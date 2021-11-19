@@ -15,10 +15,27 @@ public class Nourriture implements Serializable{
 	public Nourriture() {
 		super();
 	}
-
-	@Override
-	public String toString() {
-		return "Nourriture [nomProduit=" + nomProduit + ", calories=" + calories + "]";
+	
+	public Nourriture(String nomProduit, Integer calories) {
+		super();
+		this.nomProduit = nomProduit;
+		this.calories = calories;
+	}
+	
+	public String getNomProduit() {
+		return nomProduit;
+	}
+	
+	public void setNomProduit(String nomProduit) {
+		this.nomProduit = nomProduit;
+	}
+	
+	public Integer getCalories() {
+		return calories;
+	}
+	
+	public void setCalories(Integer calories) {
+		this.calories = calories;
 	}
 
 	@Override
@@ -37,26 +54,10 @@ public class Nourriture implements Serializable{
 		Nourriture other = (Nourriture) obj;
 		return Objects.equals(calories, other.calories) && Objects.equals(nomProduit, other.nomProduit);
 	}
+	
+	@Override
+	public String toString() {
+		return "Nourriture [nomProduit=" + nomProduit + ", calories=" + calories + "]";
+	}
 
-	public String getNomProduit() {
-		return nomProduit;
-	}
-	
-	public void setNomProduit(String nomProduit) {
-		this.nomProduit = nomProduit;
-	}
-	
-	public Integer getCalories() {
-		return calories;
-	}
-	
-	public Nourriture(String nomProduit, Integer calories) {
-		super();
-		this.nomProduit = nomProduit;
-		this.calories = calories;
-	}
-	
-	public void setCalories(Integer calories) {
-		this.calories = calories;
-	}
 }
