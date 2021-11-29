@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
-import fr.esisar.draguedragon.entities.Amour;
 import fr.esisar.draguedragon.entities.Dragon;
 
 public class BDDragonDAO extends DAO<Dragon, String> {
@@ -14,13 +14,13 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 		Connection connection = connexionBD.getConnection();
 		Statement stmt = connection.createStatement();
 		String cracheFeu = "N";
-		if(dragon.getCracheFeu) {
+		if(dragon.getCracheFeu()) {
 			cracheFeu = "O";
 		}
 		String sql = "INSERT INTO DRAGON VALUES "+
 				"("+dragon.getNomDragon()+", "+
 				dragon.getSexe()+", "+
-				dragon.getLongueur()+", "+
+				dragon.getLongeur()+", "+
 				dragon.getEcailles()+", "+
 				cracheFeu+", "+
 				dragon.getEnAmour()+")" ;
@@ -28,10 +28,10 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 		connection.close();
 	}
 	
-	public Dragon findById(String id) throws SQLException {
+	public Dragon findById(String nom) throws SQLException {
 		Connection connection = connexionBD.getConnection();
 		Statement stmt = connection.createStatement();
-		String sql = "SELECT * FROM DRAGON WHERE nom = "+ id;
+		String sql = "SELECT * FROM DRAGON WHERE nom = "+ nom;
 		ResultSet result = stmt.executeQuery(sql);
 		Dragon dragon =new Dragon();
 		if (result.first()) {
@@ -43,9 +43,21 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 				cracheFeu = true;
 			}
 			String enAmour = result.getString("enAmour");
-			dragon = new Dragon(id, sexe, longueur, ecailles, cracheFeu, enAmour);
+			dragon = new Dragon(nom, sexe, longueur, ecailles, cracheFeu, enAmour);
 		}
 		connection.close();
 		return dragon;
+	}
+
+	@Override
+	public List<Dragon> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Dragon t) {
+		// TODO Auto-generated method stub
+		
 	}
 }
