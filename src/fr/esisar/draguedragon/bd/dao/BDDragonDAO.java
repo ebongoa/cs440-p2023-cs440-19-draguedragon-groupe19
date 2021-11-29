@@ -10,43 +10,60 @@ import fr.esisar.draguedragon.entities.Dragon;
 
 public class BDDragonDAO extends DAO<Dragon, String> {
 
-	public void create(Dragon dragon) throws SQLException {
-		Connection connection = connexionBD.getConnection();
-		Statement stmt = connection.createStatement();
-		String cracheFeu = "N";
-		if(dragon.getCracheFeu()) {
-			cracheFeu = "O";
+	public void create(Dragon dragon) {
+		try {
+			Connection connection = connexionBD.getConnection();
+			Statement stmt;
+			
+				stmt = connection.createStatement();
+			
+			String cracheFeu = "N";
+			if(dragon.getCracheFeu()) {
+				cracheFeu = "O";
+			}
+			String sql = "INSERT INTO DRAGON VALUES "+
+					"("+dragon.getNomDragon()+", "+
+					dragon.getSexe()+", "+
+					dragon.getLongeur()+", "+
+					dragon.getEcailles()+", "+
+					cracheFeu+", "+
+					dragon.getEnAmour()+")" ;
+			stmt.executeUpdate(sql);
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		String sql = "INSERT INTO DRAGON VALUES "+
-				"("+dragon.getNomDragon()+", "+
-				dragon.getSexe()+", "+
-				dragon.getLongeur()+", "+
-				dragon.getEcailles()+", "+
-				cracheFeu+", "+
-				dragon.getEnAmour()+")" ;
-		stmt.executeUpdate(sql);
-		connection.close();
 	}
 	
-	public Dragon findById(String nom) throws SQLException {
-		Connection connection = connexionBD.getConnection();
-		Statement stmt = connection.createStatement();
-		String sql = "SELECT * FROM DRAGON WHERE nom = "+ nom;
-		ResultSet result = stmt.executeQuery(sql);
-		Dragon dragon =new Dragon();
-		if (result.first()) {
-			String sexe = result.getString("sexe");
-			Float longueur = result.getFloat("longueur");
-			Integer ecailles = result.getInt("ecailles");
-			Boolean cracheFeu = false;
-			if(result.getString("cracheFeu").equals("O")) {
-				cracheFeu = true;
+	public Dragon findById(String nom) {
+		try {
+			Connection connection = connexionBD.getConnection();
+			Statement stmt;
+			
+				stmt = connection.createStatement();
+			
+			String sql = "SELECT * FROM DRAGON WHERE nom = "+ nom;
+			ResultSet result = stmt.executeQuery(sql);
+			Dragon dragon =new Dragon();
+			if (result.first()) {
+				String sexe = result.getString("sexe");
+				Float longueur = result.getFloat("longueur");
+				Integer ecailles = result.getInt("ecailles");
+				Boolean cracheFeu = false;
+				if(result.getString("cracheFeu").equals("O")) {
+					cracheFeu = true;
+				}
+				String enAmour = result.getString("enAmour");
+				dragon = new Dragon(nom, sexe, longueur, ecailles, cracheFeu, enAmour);
 			}
-			String enAmour = result.getString("enAmour");
-			dragon = new Dragon(nom, sexe, longueur, ecailles, cracheFeu, enAmour);
+			connection.close();
+			return dragon;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		connection.close();
-		return dragon;
+		return null;	
 	}
 
 	@Override
