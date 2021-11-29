@@ -2,24 +2,33 @@ package fr.esisar.draguedragon.bd.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-public class BDRepasDAO extends DAO<Repas, Dragon, Produit>{
+import fr.esisar.draguedragon.entities.Dragon;
+import fr.esisar.draguedragon.entities.Repas;
+
+public class BDRepasDAO extends DAO<Repas, Dragon>{
 	
 	public List<Repas> findAll() {
-		List<Repas> repas = null;
-		Connection connection = connexionBD.getConnection();
-		Statement stmt = connection.createStatement();
-		String sql = "SELECT * FROM REPAS";
-		ResultSet res = stmt.executeQuery(sql);
-		while(res.next()) {
-			repas.add(new Repas(res.getInt("quantite"), res.))
-		}
+		return null;
 	}
 	
 	public void delete(Repas repas) {
 		
+	}
+
+	@Override
+	public void create(Repas t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Repas findById(Dragon id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

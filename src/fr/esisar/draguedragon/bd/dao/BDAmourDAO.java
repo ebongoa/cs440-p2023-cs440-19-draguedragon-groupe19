@@ -4,21 +4,30 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import fr.esisar.draguedragon.entities.Amour;
 import fr.esisar.draguedragon.entities.Dragon;
 
-public class BDAmourDAO extends DAO<Amour, Dragon, Dragon> {
+public class BDAmourDAO extends DAO<Amour, Dragon> {
 	
-	public void create(Amour amour) throws SQLException {
-		Connection connection = connexionBD.getConnection();
-		Statement stmt = connection.createStatement();
-		String sql = "INSERT INTO AMOURS VALUES" +
-				"(" + amour.getAimant().getNomDragon() + ", "+
-				amour.getAime().getNomDragon() +"," +
-				amour.getForce() +")" ;
-		stmt.executeUpdate(sql);
-		connection.close();
+	public void create(Amour amour) {
+		try {
+			Connection connection = connexionBD.getConnection();
+			Statement stmt;
+			
+				stmt = connection.createStatement();
+			
+			String sql = "INSERT INTO AMOURS VALUES" +
+					"(" + amour.getAimant().getNomDragon() + ", "+
+					amour.getAime().getNomDragon() +"," +
+					amour.getForce() +")" ;
+			stmt.executeUpdate(sql);
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public Amour findById(Dragon id1, Dragon id2) throws SQLException {
@@ -33,6 +42,24 @@ public class BDAmourDAO extends DAO<Amour, Dragon, Dragon> {
 		}
 		connection.close();
 		return amour;
+	}
+
+	@Override
+	public Amour findById(Dragon id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Amour> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Amour t) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
