@@ -63,7 +63,16 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 
 	@Override
 	public List<Dragon> findAll() {
-		// TODO Auto-generated method stub
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement= connection.prepareStatement("SELECT * FROM Dragion= ?");
+			ResultSet resultSet= preparedStatement.executeQuery();
+			resultSet.next();
+			client = new Client(adresseMail, resultSet.getString(2), resultSet.getString(3),resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));preparedStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generatedcatch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
