@@ -14,7 +14,7 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		try {
-			preparedStatement = connection.prepareStatement("INSERT INTO DRAGON VALUES(?,?,?,?,?,?");
+			preparedStatement = connection.prepareStatement("INSERT INTO DRAGON VALUES(?,?,?,?,?,?)");
 			
 			String cracheFeu = "N";
 			if(dragon.getCracheFeu()) {

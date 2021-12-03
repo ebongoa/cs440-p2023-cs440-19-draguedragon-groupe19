@@ -1,53 +1,59 @@
 package fr.esisar.draguedragon.bd.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import fr.esisar.draguedragon.entities.Amour;
-import fr.esisar.draguedragon.entities.Dragon;
+import fr.esisar.draguedragon.entities.AmourId;
 
-public class BDAmourDAO extends DAO<Amour, Dragon> {
-	
-	public void create(Amour amour) {
+
+public class BDAmourDAO extends DAO<Amour, AmourId> {
+
+	@Override
+	public void create(Amour t) {
+		// TODO Auto-generated method stub
+		Connection connection = connexionBD.getConnection();
+		PreparedStatement preparedStatement;
 		try {
-			Connection connection = connexionBD.getConnection();
-			Statement stmt;
+			preparedStatement = connection.prepareStatement("INSERT INTO AMOURS VALUES(?,?,?)");
+			preparedStatement.setString(1, t.getAmourId().getAimant().getNomDragon());
+			preparedStatement.setString(2, t.getAmourId().getAime().getNomDragon());
+			preparedStatement.setString(3, t.getForce());
+			preparedStatement.executeUpdate();
 			
-				stmt = connection.createStatement();
-			
-			String sql = "INSERT INTO AMOURS VALUES" +
-					"(" + amour.getAimant().getNomDragon() + ", "+
-					amour.getAime().getNomDragon() +"," +
-					amour.getForce() +")" ;
-			stmt.executeUpdate(sql);
-			connection.close();
+			preparedStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public Amour findById(Dragon id1, Dragon id2) throws SQLException {
-		Connection connection = connexionBD.getConnection();
-		Statement stmt = connection.createStatement();
-		String sql = "SELECT force FROM AMOURS WHERE aimant = "+ id1.getNomDragon()+
-				"AND aime = " + id2.getNomDragon();
-		ResultSet result = stmt.executeQuery(sql);
-		Amour amour = new Amour();
-		if (result.first()) {
-			amour = new Amour(result.getString("force"), id1, id2);
-		}
-		connection.close();
-		return amour;
+		
 	}
 
 	@Override
-	public Amour findById(Dragon id) {
+	public Amour findById(AmourId id) {
 		// TODO Auto-generated method stub
-		return null;
+		Connection connection = connexionBD.getConnection();
+		PreparedStatement preparedStatement;
+		Amour amour = new Amour();
+		
+		try {
+			preparedStatement = connection.prepareStatement("SELECT * FROM AMOURS WHERE aime=? AND aimant=?");
+			preparedStatement.setString(1, id.getAime().getNomDragon());
+			preparedStatement.setString(2, id.getAimant().getNomDragon());
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			amour = new Amour(resultSet.getString(3), id);
+			 
+			preparedStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return amour;
 	}
 
 	@Override
@@ -61,5 +67,5 @@ public class BDAmourDAO extends DAO<Amour, Dragon> {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

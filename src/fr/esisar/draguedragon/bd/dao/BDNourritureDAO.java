@@ -15,7 +15,7 @@ public class BDNourritureDAO extends DAO<Nourriture, String>{
 	public void create(Nourriture t) {
 		try {
 			Connection connection = connexionBD.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Nourriture VALUES = ?");
+			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO NOURRITURE VALUES (?,?)");
 			preparedStatement.setString(1, t.getNomProduit());
 			preparedStatement.setLong(2, t.getCalories());
 			preparedStatement.executeUpdate();
@@ -30,7 +30,7 @@ public class BDNourritureDAO extends DAO<Nourriture, String>{
 		try {
 			Connection connection = connexionBD.getConnection();
 			PreparedStatement stmt;
-			stmt = connection.prepareStatement("SELECT * FROM Nourriture WHERE produit = ?");
+			stmt = connection.prepareStatement("SELECT * FROM NOURRITURE WHERE produit = ?");
 			stmt.setString(1, nomProduit);
 			ResultSet result = stmt.executeQuery();
 			result.next();
@@ -52,7 +52,7 @@ public class BDNourritureDAO extends DAO<Nourriture, String>{
 		PreparedStatement preparedStatement;
 		
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM Nourriture");
+			preparedStatement = connection.prepareStatement("SELECT * FROM NOURRITURE");
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while(resultSet.next()) {
@@ -76,7 +76,7 @@ public class BDNourritureDAO extends DAO<Nourriture, String>{
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		try {
-			preparedStatement = connection.prepareStatement("DELETE * FROM Nourriture WHERE produit = ?");
+			preparedStatement = connection.prepareStatement("DELETE * FROM NOURRITURE WHERE produit = ?");
 			preparedStatement.setString(1, t.getNomProduit());
 			
 			preparedStatement.executeUpdate();
