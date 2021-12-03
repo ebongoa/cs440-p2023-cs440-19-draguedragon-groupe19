@@ -23,7 +23,7 @@ public class BDNourritureDAO extends DAO<Nourriture, String>{
 	public void create(Nourriture t) {
 		try {
 			Connection connection = connexionBD.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO DRAGON VALUES = ?");
+			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO NOURRITURE VALUES = ?");
 			preparedStatement.setString(1, t.getNomProduit());
 			preparedStatement.setLong(2, t.getCalories());
 			preparedStatement.executeUpdate();
