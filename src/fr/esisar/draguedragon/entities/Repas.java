@@ -11,35 +11,16 @@ public class Repas implements Serializable{
 	
 	private Integer quantite;
 
-	private Dragon dragon;
-	
-	private Nourriture nourriture;
+	private RepasId Id;
 	
 	public Repas() {
 		super();
 	}
 	
-	public Repas(Integer quantite, Dragon dragon, Nourriture nourriture) {
+	public Repas(Integer quantite, RepasId Id) {
 		super();
 		this.quantite = quantite;
-		this.dragon = dragon;
-		this.nourriture = nourriture;
-	}
-
-	public Dragon getDragon() {
-		return dragon;
-	}
-
-	public void setDragon(Dragon dragon) {
-		this.dragon = dragon;
-	}
-
-	public Nourriture getNourriture() {
-		return nourriture;
-	}
-
-	public void setNourriture(Nourriture nourriture) {
-		this.nourriture = nourriture;
+		this.Id = Id;
 	}
 
 	public Integer getQuantite() {
@@ -50,9 +31,17 @@ public class Repas implements Serializable{
 		this.quantite = quantite;
 	}
 
+	public RepasId getId() {
+		return Id;
+	}
+
+	public void setId(RepasId id) {
+		Id = id;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(dragon, nourriture, quantite);
+		return Objects.hash(Id, quantite);
 	}
 
 	@Override
@@ -64,13 +53,14 @@ public class Repas implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Repas other = (Repas) obj;
-		return Objects.equals(dragon, other.dragon) && Objects.equals(nourriture, other.nourriture)
-				&& Objects.equals(quantite, other.quantite);
+		return Objects.equals(Id, other.Id) && Objects.equals(quantite, other.quantite);
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Repas [quantite=" + quantite + ", dragon=" + dragon + ", nourriture=" + nourriture + "]";
+		return "Repas [quantite=" + quantite + ", Id=" + Id + "]";
 	}
+
+
 
 }
