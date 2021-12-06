@@ -62,13 +62,13 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 
 	@Override
 	public List<Dragon> findAll() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void delete(Dragon t) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }
