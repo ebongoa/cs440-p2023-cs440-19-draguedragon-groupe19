@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.esisar.draguedragon.entities.Dragon;
@@ -52,6 +51,7 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 			if(resultSet.getString(5).equals("O")) {
 				cracheFeu = true;
 			}
+			
 			dragon = new Dragon(nomDragon, resultSet.getString(2), resultSet.getFloat(3), resultSet.getInt(4), cracheFeu, resultSet.getString(6));
 			preparedStatement.close();
 		} catch (SQLException e) {
