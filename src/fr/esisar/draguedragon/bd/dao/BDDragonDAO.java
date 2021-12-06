@@ -50,9 +50,8 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 			if(resultSet.getString(5).equals("O")) {
 				cracheFeu = true;
 			}
-			
-			dragon =new Dragon(nomDragon, resultSet.getString(2), resultSet.getFloat(3), resultSet.getInt(4),
-					cracheFeu, resultSet.getString(6));
+			dragon = new Dragon(nom, resultSet.getString(2), resultSet.getFloat(3), resultSet.getInt(4), cracheFeu, resultSet.getString(6));
+			preparedStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
