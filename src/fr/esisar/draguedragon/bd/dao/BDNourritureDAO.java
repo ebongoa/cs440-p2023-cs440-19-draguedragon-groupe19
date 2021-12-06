@@ -35,7 +35,7 @@ public class BDNourritureDAO extends DAO<Nourriture, String>{
 			ResultSet result = stmt.executeQuery();
 			result.next();
 			Nourriture nourriture = new Nourriture(nomProduit, result.getInt(2));
-			connection.close();
+			stmt.close();
 			return nourriture;
 		} catch (SQLException e) {
 			e.printStackTrace();
