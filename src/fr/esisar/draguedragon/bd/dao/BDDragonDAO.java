@@ -38,13 +38,25 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 	}
 	
 	public Dragon findById(String nomDragon) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'Laurens2' of https://gitlab.ensimag.fr/cs440-p2023/cs440-19/draguedragon-groupe19.git
 		Connection connection = connexionBD.getConnection();
+<<<<<<< HEAD
 		PreparedStatement preparedStatement;
 		Dragon dragon = new Dragon();
 		try {
 			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON WHERE nom = ?");
 			preparedStatement.setString(1, nomDragon);
 			
+=======
+		Dragon dragon = new Dragon();
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON WHERE nom =?");
+			preparedStatement.setString(1, nomDragon);
+>>>>>>> branch 'Laurens2' of https://gitlab.ensimag.fr/cs440-p2023/cs440-19/draguedragon-groupe19.git
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
@@ -52,7 +64,10 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 			if(resultSet.getString(5).equals("O")) {
 				cracheFeu = true;
 			}
+<<<<<<< HEAD
 			
+=======
+>>>>>>> branch 'Laurens2' of https://gitlab.ensimag.fr/cs440-p2023/cs440-19/draguedragon-groupe19.git
 			dragon = new Dragon(nomDragon, resultSet.getString(2), resultSet.getFloat(3), resultSet.getInt(4), cracheFeu, resultSet.getString(6));
 			preparedStatement.close();
 		} catch (SQLException e) {
