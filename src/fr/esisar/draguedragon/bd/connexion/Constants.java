@@ -2,28 +2,8 @@ package fr.esisar.draguedragon.bd.connexion;
 
 public class Constants {
 	
-	public static String DRIVER;
-	public static String LOGIN;
-	public static String PASSWORD;
-	public static String URL;
-	
-	public Constants() {
-		super();
-	}
-
-	public static String getDRIVER() {
-		return DRIVER;
-	}
-
-	public static String getLOGIN() {
-		return LOGIN;
-	}
-
-	public static String getPASSWORD() {
-		return PASSWORD;
-	}
-
-	public static String getURL() {
-		return URL;
-	}
+	public static String DRIVER = "oracle.jdbc.driver.OracleDriver";
+	public static String LOGIN = "GROUPE19";
+	public static String PASSWORD = "GROUPE19";
+	public static String URL = "jdbc:oracle:thin:@//tp-oracle.esisar.grenoble-inp.fr:1521/xe";
 }

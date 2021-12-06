@@ -10,7 +10,6 @@ import java.util.List;
 import fr.esisar.draguedragon.entities.Amour;
 import fr.esisar.draguedragon.entities.AmourId;
 import fr.esisar.draguedragon.entities.Dragon;
-import fr.esisar.draguedragon.entities.Nourriture;
 
 
 public class BDAmourDAO extends DAO<Amour, AmourId> {
