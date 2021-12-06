@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.esisar.draguedragon.entities.Dragon;
+import fr.esisar.draguedragon.entities.Nourriture;
 
 public class BDDragonDAO extends DAO<Dragon, String> {
 
@@ -50,7 +52,7 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 			if(resultSet.getString(5).equals("O")) {
 				cracheFeu = true;
 			}
-			dragon = new Dragon(nom, resultSet.getString(2), resultSet.getFloat(3), resultSet.getInt(4), cracheFeu, resultSet.getString(6));
+			dragon = new Dragon(nomDragon, resultSet.getString(2), resultSet.getFloat(3), resultSet.getInt(4), cracheFeu, resultSet.getString(6));
 			preparedStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -61,13 +63,40 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 
 	@Override
 	public List<Dragon> findAll() {
+		// TODO Auto-generated method stub
+		Connection connection = connexionBD.getConnection();
+		List<Dragon> dragons = new ArrayList<Dragon>();
+		PreparedStatement preparedStatement;
 		
-		return null;
+		try {
+			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+					Dragon dragon = new Dragon(resultSet.getString(1),resultSet.getString(2), resultSet.getFloat(3),resultSet.getInt(4),resultSet.getBoolean(5),resultSet.getString(6));
+					dragons.add(dragon);
+			}
+				
+			preparedStatement.close();
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}	
+		return dragons;	
 	}
 
 	@Override
-	public void delete(Dragon t) {
-		
-		
+	public void delete(Dragon dragon) {
+		// TODO Auto-generated method stub
+		Connection connection = connexionBD.getConnection();
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = connection.prepareStatement("DELETE * FROM DRAGON WHERE nom = ?");
+			preparedStatement.setString(1, dragon.getNomDragon());	
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
