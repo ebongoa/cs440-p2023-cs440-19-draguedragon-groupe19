@@ -36,28 +36,28 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 	}
 	
 	public Dragon findById(String nomDragon) {
+
 		Connection connection = connexionBD.getConnection();
-		PreparedStatement preparedStatement;
 		Dragon dragon = new Dragon();
+		PreparedStatement preparedStatement;
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON WHERE nom = ?");
+			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON WHERE nom =?");
 			preparedStatement.setString(1, nomDragon);
-			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			
 			Boolean cracheFeu = false;
 			if(resultSet.getString(5).equals("O")) {
 				cracheFeu = true;
 			}
 			
-			dragon =new Dragon(nomDragon, resultSet.getString(2), resultSet.getFloat(3), resultSet.getInt(4),
-					cracheFeu, resultSet.getString(6));
+			dragon = new Dragon(nomDragon, resultSet.getString(2), resultSet.getFloat(3), resultSet.getInt(4), cracheFeu, resultSet.getString(6));
+			preparedStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return dragon;	
+	
 	}
 
 	@Override
