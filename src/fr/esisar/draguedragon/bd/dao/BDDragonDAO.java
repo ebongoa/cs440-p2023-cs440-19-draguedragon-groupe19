@@ -38,13 +38,13 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 	}
 	
 	public Dragon findById(String nomDragon) {
+
 		Connection connection = connexionBD.getConnection();
-		PreparedStatement preparedStatement;
 		Dragon dragon = new Dragon();
+		PreparedStatement preparedStatement;
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON WHERE nom = ?");
+			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON WHERE nom =?");
 			preparedStatement.setString(1, nomDragon);
-			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
