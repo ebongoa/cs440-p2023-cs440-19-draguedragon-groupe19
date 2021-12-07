@@ -17,7 +17,7 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = connection.prepareStatement("INSERT INTO DRAGON VALUES(?,?,?,?,?,?)");
-			
+
 			String cracheFeu = "N";
 			if(dragon.getCracheFeu()) {
 				cracheFeu = "O";
@@ -29,35 +29,44 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 			preparedStatement.setString(5, cracheFeu);
 			preparedStatement.setString(6, dragon.getEnAmour());
 			preparedStatement.executeUpdate();
-			
+
 			preparedStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Dragon findById(String nomDragon) {
-		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		Dragon dragon = new Dragon();
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON WHERE nom = ?");
+			preparedStatement = connexionBD.getConnection().prepareStatement("SELECT * FROM DRAGON WHERE nom=?");
 			preparedStatement.setString(1, nomDragon);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
-			Boolean cracheFeu = false;
-			if(resultSet.getString(5).equals("O")) {
-				cracheFeu = true;
-			}
-			dragon = new Dragon(nomDragon, resultSet.getString(2), resultSet.getFloat(3), resultSet.getInt(4), cracheFeu, resultSet.getString(6));
+			
+			dragon.setNomDragon(nomDragon);
+			dragon.setSexe(resultSet.getString("sexe"));
+			dragon.setCracheFeu(testFeu(resultSet.getString("cracheFeu")));
+			dragon.setLongeur(resultSet.getFloat("longueur"));
+			dragon.setEcailles(resultSet.getInt("ecailles"));
+			dragon.setEnAmour(resultSet.getString("enAmour"));
+
 			preparedStatement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return dragon;	
+	}
+
+	public Boolean testFeu(String s) {
+		Boolean cracheFeu = false;
+		if(s.equals("O")) {
+			cracheFeu = true;
+		}
+		return cracheFeu;
 	}
 
 	@Override
@@ -66,19 +75,19 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 		Connection connection = connexionBD.getConnection();
 		List<Dragon> dragons = new ArrayList<Dragon>();
 		PreparedStatement preparedStatement;
-		
+
 		try {
 			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
-					Dragon dragon = new Dragon(resultSet.getString(1),resultSet.getString(2), resultSet.getFloat(3),resultSet.getInt(4),resultSet.getBoolean(5),resultSet.getString(6));
-					dragons.add(dragon);
+				Dragon dragon = new Dragon(resultSet.getString(1),resultSet.getString(2), resultSet.getFloat(3),resultSet.getInt(4),resultSet.getBoolean(5),resultSet.getString(6));
+				dragons.add(dragon);
 			}
-				
+
 			preparedStatement.close();
 		} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}	
 		return dragons;	
 	}

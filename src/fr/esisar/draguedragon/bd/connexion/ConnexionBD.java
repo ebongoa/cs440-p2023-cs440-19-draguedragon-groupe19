@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public final class ConnexionBD {
 
-	private static volatile ConnexionBD connexionBD = null;
+	private static ConnexionBD connexionBD = null;
 
 	private Connection connection;
 
@@ -20,12 +20,10 @@ public final class ConnexionBD {
 	}
 
 	public final static ConnexionBD getInstance() {
-		if(ConnexionBD.connexionBD == null) {
-			synchronized(ConnexionBD.class) {
-				if(ConnexionBD.connexionBD==null) {
-					ConnexionBD.connexionBD = new ConnexionBD();
+		synchronized(ConnexionBD.class) {
+			if(ConnexionBD.connexionBD==null) {
+				ConnexionBD.connexionBD = new ConnexionBD();
 
-				}
 			}
 		}
 		return ConnexionBD.connexionBD;

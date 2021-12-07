@@ -24,9 +24,9 @@ public class DragueDragonMain {
 		Nourriture nourriture = new Nourriture("Pomme",7);
 		
 		System.out.println(dragonDAO.findById("Smeaghol"));
-		System.out.println(amourDAO.findById(new AmourId(aimant,aime)));
-		System.out.println(nourritureDAO.findById("Pomme"));
-		System.out.println(repasDAO.findById(new RepasId(aimant, nourriture)));
+//		System.out.println(amourDAO.findById(new AmourId(aimant,aime)));
+//		System.out.println(nourritureDAO.findById("Pomme"));
+//		System.out.println(repasDAO.findById(new RepasId(aimant, nourriture)));
 		
 	}
 
