@@ -12,12 +12,10 @@ public class DragueDragonMain {
 
 	public static void main(String[] args) {
 		
-		BDFactory factory = new BDFactory();
-		
-		DAO<Dragon, String> dragonDAO= factory.getBDDragonDAO();
-		DAO<Amour, AmourId> amourDAO= factory.getBDAmourDAO();
-		DAO<Nourriture, String> nourritureDAO= factory.getBDNourritureDAO();
-		DAO<Repas, RepasId> repasDAO= factory.getBDRepasDAO();
+//		DAO<Dragon, String> dragonDAO= factory.getBDDragonDAO();
+//		DAO<Amour, AmourId> amourDAO= factory.getBDAmourDAO();
+//		DAO<Nourriture, String> nourritureDAO= factory.getBDNourritureDAO();
+//		DAO<Repas, RepasId> repasDAO= factory.getBDRepasDAO();
 		
 		Dragon aimant = new Dragon();
 		aimant.setNomDragon("Smeaghol");
