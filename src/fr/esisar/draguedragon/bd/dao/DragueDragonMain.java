@@ -1,6 +1,10 @@
 package fr.esisar.draguedragon.bd.dao;
 
+import fr.esisar.draguedragon.bd.factory.BDAmourFactory;
+import fr.esisar.draguedragon.bd.factory.BDDragonFactory;
 import fr.esisar.draguedragon.bd.factory.BDFactory;
+import fr.esisar.draguedragon.bd.factory.BDNourritureFactory;
+import fr.esisar.draguedragon.bd.factory.BDRepasFactory;
 import fr.esisar.draguedragon.entities.Amour;
 import fr.esisar.draguedragon.entities.AmourId;
 import fr.esisar.draguedragon.entities.Dragon;
@@ -12,10 +16,15 @@ public class DragueDragonMain {
 
 	public static void main(String[] args) {
 		
-//		DAO<Dragon, String> dragonDAO= factory.getBDDragonDAO();
-//		DAO<Amour, AmourId> amourDAO= factory.getBDAmourDAO();
-//		DAO<Nourriture, String> nourritureDAO= factory.getBDNourritureDAO();
-//		DAO<Repas, RepasId> repasDAO= factory.getBDRepasDAO();
+		BDAmourFactory amourFactory = new BDAmourFactory();
+		BDDragonFactory dragonFactory = new BDDragonFactory();
+		BDNourritureFactory nourritureFactory = new BDNourritureFactory();
+		BDRepasFactory repasFactory = new BDRepasFactory();
+		
+		DAO<Dragon, String> dragonDAO= dragonFactory.newInstance();
+		DAO<Amour, AmourId> amourDAO= amourFactory.newInstance();
+		DAO<Nourriture, String> nourritureDAO= nourritureFactory.newInstance();
+		DAO<Repas, RepasId> repasDAO= repasFactory.newInstance();
 		
 		Dragon aimant = new Dragon();
 		aimant.setNomDragon("Smeaghol");
