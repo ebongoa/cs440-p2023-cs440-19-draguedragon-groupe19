@@ -21,7 +21,7 @@ public class Amour implements Serializable{
 	public Amour(String force, AmourId amourId) {
 		super();
 		this.force = force;
-		this.amourId = new AmourId();
+		this.amourId = amourId;
 	}
 
 	public String getForce() {

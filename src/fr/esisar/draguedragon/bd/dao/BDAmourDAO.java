@@ -93,7 +93,7 @@ public class BDAmourDAO extends DAO<Amour, AmourId> {
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		try {
-			preparedStatement = connection.prepareStatement("DELETE * FROM AMOURS WHERE aimant = ? AND  aime = ?");
+			preparedStatement = connection.prepareStatement("DELETE FROM AMOURS WHERE aimant = ? AND  aime = ?");
 			preparedStatement.setString(1, amour.getAmourId().getAimant().getNomDragon());
 			preparedStatement.setString(2, amour.getAmourId().getAime().getNomDragon());
 			

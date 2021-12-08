@@ -15,7 +15,7 @@ public class BDNourritureDAO extends DAO<Nourriture, String>{
 	public void create(Nourriture t) {
 		try {
 			Connection connection = connexionBD.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO NOURRITURE VALUES = ?");
+			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO NOURRITURE VALUES(?,?)");
 			preparedStatement.setString(1, t.getNomProduit());
 			preparedStatement.setLong(2, t.getCalories());
 			preparedStatement.executeUpdate();
@@ -56,7 +56,7 @@ public class BDNourritureDAO extends DAO<Nourriture, String>{
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while(resultSet.next()) {
-				Nourriture nourriture = new Nourriture(resultSet.getString(1), resultSet.getInt(1));
+				Nourriture nourriture = new Nourriture(resultSet.getString(1), resultSet.getInt(2));
 				nourritures.add(nourriture);
 			}
 			
@@ -76,10 +76,14 @@ public class BDNourritureDAO extends DAO<Nourriture, String>{
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		try {
-			preparedStatement = connection.prepareStatement("DELETE * FROM NOURRITURE WHERE produit = ?");
+			preparedStatement = connection.prepareStatement("DELETE FROM Repas WHERE produit = ?");
 			preparedStatement.setString(1, nourriture.getNomProduit());
-			
 			preparedStatement.executeUpdate();
+			
+			preparedStatement = connection.prepareStatement("DELETE FROM NOURRITURE WHERE produit = ?");
+			preparedStatement.setString(1, nourriture.getNomProduit());
+			preparedStatement.executeUpdate();
+			
 			preparedStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

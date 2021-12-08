@@ -80,7 +80,7 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 			preparedStatement = connection.prepareStatement("SELECT * FROM DRAGON");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
-				Dragon dragon = new Dragon(resultSet.getString(1),resultSet.getString(2), resultSet.getFloat(3),resultSet.getInt(4),resultSet.getBoolean(5),resultSet.getString(6));
+				Dragon dragon = new Dragon(resultSet.getString("nom"),resultSet.getString("sexe"), resultSet.getFloat("longueur"),resultSet.getInt("ecailles"),testFeu(resultSet.getString("cracheFeu")),resultSet.getString("enAmour"));
 				dragons.add(dragon);
 			}
 
@@ -98,12 +98,20 @@ public class BDDragonDAO extends DAO<Dragon, String> {
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		try {
-			preparedStatement = connection.prepareStatement("DELETE * FROM DRAGON WHERE nom = ?");
+			preparedStatement = connection.prepareStatement("DELETE FROM AMOURS WHERE AIMANT = ? OR AIME = ?");
+			preparedStatement.setString(1, dragon.getNomDragon());
+			preparedStatement.setString(2, dragon.getNomDragon());
+			preparedStatement.executeUpdate();
+			
+			preparedStatement = connection.prepareStatement("DELETE FROM REPAS WHERE DRAGON = ?");
+			preparedStatement.setString(1, dragon.getNomDragon());
+			preparedStatement.executeUpdate();
+			
+			preparedStatement = connection.prepareStatement("DELETE FROM DRAGON WHERE nom = ?");
 			preparedStatement.setString(1, dragon.getNomDragon());	
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
