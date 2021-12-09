@@ -14,7 +14,6 @@ public class JsonDragonDAO implements DragonDAO {
 	
 	@Override
 	public void create(Dragon t) {
-		// TODO Auto-generated method stub
 		DragueDragon dragueDragon = jsonFile.loadFile();
 		dragueDragon.dragons.add(t);
 		jsonFile.saveFile(dragueDragon);
@@ -23,7 +22,6 @@ public class JsonDragonDAO implements DragonDAO {
 
 	@Override
 	public Dragon findById(String id) {
-		// TODO Auto-generated method stub
 		DragueDragon dragueDragon = jsonFile.loadFile();
 		
 		for (Dragon dragon :dragueDragon.dragons) {
@@ -37,7 +35,6 @@ public class JsonDragonDAO implements DragonDAO {
 
 	@Override
 	public List<Dragon> findAll() {
-		// TODO Auto-generated method stub
 		DragueDragon dragueDragon = jsonFile.loadFile();
 		List<Dragon> dragons = new ArrayList<Dragon>();
 		
@@ -50,14 +47,12 @@ public class JsonDragonDAO implements DragonDAO {
 
 	@Override
 	public void delete(Dragon t) {
-		// TODO Auto-generated method stub
 		DragueDragon dragueDragon = jsonFile.loadFile();
-		int i = 0;
-		for (Dragon dragon :dragueDragon.dragons) {
-			if(dragon.equals(t)) {
-				dragueDragon.dragons.remove(i);
+		int i;
+		for (i=0; i<dragueDragon.dragons.size(); i++) {
+			if(dragueDragon.dragons.get(i).getNomDragon().equals(t.getNomDragon())) {
+				dragueDragon.dragons.remove(dragueDragon.dragons.get(i));
 			}
-			i++;
 		}
 		
 		jsonFile.saveFile(dragueDragon);

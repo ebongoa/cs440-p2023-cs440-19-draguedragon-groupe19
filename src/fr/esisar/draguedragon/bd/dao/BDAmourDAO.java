@@ -22,7 +22,6 @@ public class BDAmourDAO implements AmourDAO {
 	
 	@Override
 	public void create(Amour t) {
-		// TODO Auto-generated method stub
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		try {
@@ -34,7 +33,6 @@ public class BDAmourDAO implements AmourDAO {
 			
 			preparedStatement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -42,7 +40,6 @@ public class BDAmourDAO implements AmourDAO {
 
 	@Override
 	public Amour findById(AmourId id) {
-		// TODO Auto-generated method stub
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		Amour amour = new Amour();
@@ -58,7 +55,6 @@ public class BDAmourDAO implements AmourDAO {
 			 
 			preparedStatement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return amour;
@@ -66,7 +62,6 @@ public class BDAmourDAO implements AmourDAO {
 
 	@Override
 	public List<Amour> findAll() {
-		// TODO Auto-generated method stub
 				Connection connection = connexionBD.getConnection();
 				List<Amour> amours = new ArrayList<Amour>();
 				PreparedStatement preparedStatement;
@@ -86,7 +81,6 @@ public class BDAmourDAO implements AmourDAO {
 					
 					preparedStatement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -95,7 +89,6 @@ public class BDAmourDAO implements AmourDAO {
 
 	@Override
 	public void delete(Amour amour) {
-		// TODO Auto-generated method stub
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		try {
@@ -106,7 +99,6 @@ public class BDAmourDAO implements AmourDAO {
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

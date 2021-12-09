@@ -6,7 +6,6 @@ import fr.esisar.draguedragon.bd.abstractfactory.NourritureDAO;
 import fr.esisar.draguedragon.bd.connexion.JsonFile;
 import fr.esisar.draguedragon.entities.DragueDragon;
 import fr.esisar.draguedragon.entities.Nourriture;
-import fr.esisar.draguedragon.entities.Repas;
 
 public class JsonNourritureDAO implements NourritureDAO {
 
@@ -40,11 +39,13 @@ public class JsonNourritureDAO implements NourritureDAO {
 	@Override
 	public void delete(Nourriture t) {
 		DragueDragon draguedragon = jsonfile.loadFile();
-		for(Nourriture n: draguedragon.nourritures) {
-			if(n.getNomProduit().equals(t.getNomProduit())){
-				draguedragon.repas.remove(n);
+		int i;
+		for(i=0; i<draguedragon.nourritures.size(); i++) {
+			if(draguedragon.nourritures.get(i).getNomProduit().equals(t.getNomProduit())){
+				draguedragon.nourritures.remove(draguedragon.nourritures.get(i));
 			}
 		}
+		jsonfile.saveFile(draguedragon);
 	}
 
 }

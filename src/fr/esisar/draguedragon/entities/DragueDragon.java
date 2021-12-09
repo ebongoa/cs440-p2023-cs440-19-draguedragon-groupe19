@@ -25,6 +25,7 @@ public class DragueDragon implements Serializable{
 		this.nourritures = new ArrayList<Nourriture>();
 	}
 
+
 	public DragueDragon(List<Amour> amours, List<Dragon> dragons, List<Repas> repas, List<Nourriture> nourritures) {
 		super();
 		this.amours = amours;
@@ -48,4 +49,10 @@ public class DragueDragon implements Serializable{
 	public List<Nourriture> getNourritures() {
 		return nourritures;
 	}	
+	
+	@Override
+	public String toString() {
+		return "DragueDragon [amours=" + amours + ", dragons=" + dragons + ", repas=" + repas + ", nourritures="
+				+ nourritures + "]";
+	}
 }

@@ -16,7 +16,6 @@ public class JsonAmourDAO implements AmourDAO {
 	
 	@Override
 	public void create(Amour t) {
-		// TODO Auto-generated method stub
 		DragueDragon dragueDragon = jsonFile.loadFile();
 		dragueDragon.amours.add(t);
 		jsonFile.saveFile(dragueDragon);
@@ -25,7 +24,6 @@ public class JsonAmourDAO implements AmourDAO {
 
 	@Override
 	public Amour findById(AmourId id) {
-		// TODO Auto-generated method stub
 		DragueDragon dragueDragon = jsonFile.loadFile();
 		
 		for (Amour amour :dragueDragon.amours) {
@@ -39,7 +37,6 @@ public class JsonAmourDAO implements AmourDAO {
 
 	@Override
 	public List<Amour> findAll() {
-		// TODO Auto-generated method stub
 		DragueDragon dragueDragon = jsonFile.loadFile();
 		List<Amour> amours = new ArrayList<Amour>();
 		
@@ -52,14 +49,12 @@ public class JsonAmourDAO implements AmourDAO {
 
 	@Override
 	public void delete(Amour t) {
-		// TODO Auto-generated method stub
 		DragueDragon dragueDragon = jsonFile.loadFile();
-		int i = 0;
-		for (Amour amour : dragueDragon.amours) {
-			if(amour.equals(t)) {
-				dragueDragon.amours.remove(i);
+		int i;
+		for (i=0; i<dragueDragon.amours.size(); i++) {
+			if(dragueDragon.amours.get(i).getAmourId().equals(t.getAmourId())) {
+				dragueDragon.amours.remove(dragueDragon.amours.get(i));
 			}
-			i++;
 		}
 		
 		jsonFile.saveFile(dragueDragon);

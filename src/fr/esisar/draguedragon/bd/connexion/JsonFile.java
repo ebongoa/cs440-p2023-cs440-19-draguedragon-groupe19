@@ -2,8 +2,10 @@ package fr.esisar.draguedragon.bd.connexion;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
+
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import fr.esisar.draguedragon.entities.DragueDragon;
 
@@ -18,6 +20,7 @@ public class JsonFile {
 	private JsonFile(String pathname) {
 		super();
 		this.file = new File(pathname);
+		this.dragueDragon = new DragueDragon();
 	}
 	
 	public final static JsonFile getInstance() {
@@ -37,9 +40,10 @@ public class JsonFile {
 	public DragueDragon loadFile() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			this.dragueDragon = mapper.readValue(file, DragueDragon.class);
+			if(file.length()!=0) {
+				this.dragueDragon = mapper.readValue(file, DragueDragon.class);
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    
@@ -48,10 +52,10 @@ public class JsonFile {
 	
 	public void saveFile(DragueDragon dragueDragon) {
 		ObjectMapper mapper = new ObjectMapper();
+		ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 		try {
-			mapper.writeValue(this.file, dragueDragon);
+			writer.writeValue(this.file, dragueDragon);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

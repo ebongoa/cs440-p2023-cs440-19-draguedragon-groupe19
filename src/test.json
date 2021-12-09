@@ -1,17 +1,6 @@
 {
-  "quantite" : 12,
-  "id" : {
-    "dragon" : {
-      "nomDragon" : "test",
-      "sexe" : "M",
-      "ecailles" : 1567,
-      "cracheFeu" : true,
-      "enAmour" : "Passionne",
-      "longeur" : 15.0
-    },
-    "nourriture" : {
-      "nomProduit" : "tacos",
-      "calories" : 5555
-    }
-  }
+  "amours" : [ ],
+  "dragons" : [ ],
+  "repas" : [ ],
+  "nourritures" : [ ]
 }

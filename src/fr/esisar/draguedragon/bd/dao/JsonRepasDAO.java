@@ -40,12 +40,13 @@ public class JsonRepasDAO implements RepasDAO {
 	@Override
 	public void delete(Repas t) {
 		DragueDragon draguedragon = jsonfile.loadFile();
-		for(Repas r: draguedragon.repas) {
-			if(r.getId().equals(t.getId())){
-				draguedragon.repas.remove(r);
+		int i;
+		for(i=0; i<draguedragon.repas.size(); i++) {
+			if(draguedragon.repas.get(i).getId().equals(t.getId())){
+				draguedragon.repas.remove(draguedragon.repas.get(i));
 			}
 		} 
-
+		jsonfile.saveFile(draguedragon);
 	}
 
 }
