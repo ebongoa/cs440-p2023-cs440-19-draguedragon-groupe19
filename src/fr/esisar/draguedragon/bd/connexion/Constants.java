@@ -6,5 +6,5 @@ public class Constants {
 	public static String LOGIN = "GROUPE24";
 	public static String PASSWORD = "GROUPE24";
 	public static String URL = "jdbc:oracle:thin:@//tp-oracle.esisar.grenoble-inp.fr:1521/xe";
-	public static String pathname = "/home/ebongoa/git/draguedragon-groupe19/src/test.json";
+	public static String pathname = "src/test.json";
 }
