@@ -5,7 +5,8 @@ import java.io.File;
 import fr.esisar.draguedragon.bd.connexion.JsonFile;
 //import fr.esisar.draguedragon.bd.factory.BDAmourFactory;
 //import fr.esisar.draguedragon.bd.factory.BDDragonFactory;
-import fr.esisar.draguedragon.bd.factory.BDFactory;
+import fr.esisar.draguedragon.bd.abstractfactory.BDFactory;
+import fr.esisar.draguedragon.bd.abstractfactory.RepasDAO;
 //import fr.esisar.draguedragon.bd.factory.BDNourritureFactory;
 //import fr.esisar.draguedragon.bd.factory.BDRepasFactory;
 import fr.esisar.draguedragon.entities.Amour;
@@ -19,10 +20,17 @@ import fr.esisar.draguedragon.entities.RepasId;
 public class DragueDragonMain {
 
 	public static void main(String[] args) {
-		JsonFile jsonFile = JsonFile.getInstance();
-		DragueDragon dragueDragon = jsonFile.loadFile();
-		System.out.println(dragueDragon.dragons.get(0));
-		System.out.println(dragueDragon.amours.get(0));
+		
+		BDFactory BDfactory = new BDFactory();
+		RepasDAO repastest = BDfactory.createRepasDAO();
+		Dragon dragon =new Dragon("test","M",(float)15.0,1567,true,"Passionne");
+		Nourriture nourriture = new Nourriture("tacos",5555);
+		Repas repas = new Repas(12,new RepasId(dragon,nourriture));
+		JsonRepasDAO test = new JsonRepasDAO();
+		test.create(repas);
+		System.out.println("fin");
+		
+		
 		
 //		BDAmourFactory amourFactory = new BDAmourFactory();
 //		BDDragonFactory dragonFactory = new BDDragonFactory();
