@@ -1,9 +1,15 @@
 package fr.esisar.draguedragon.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DragueDragon {
+public class DragueDragon implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 641805476897111473L;
 	
 	public List<Amour> amours;
 	public List<Dragon> dragons;

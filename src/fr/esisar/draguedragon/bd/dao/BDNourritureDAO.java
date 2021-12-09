@@ -7,10 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.esisar.draguedragon.bd.abstractfactory.AmourDAO;
+import fr.esisar.draguedragon.bd.abstractfactory.NourritureDAO;
+import fr.esisar.draguedragon.bd.connexion.ConnexionBD;
 import fr.esisar.draguedragon.entities.Nourriture;
 
-public class BDNourritureDAO extends DAO<Nourriture, String>{
+//public class BDNourritureDAO extends DAO<Nourriture, String> {
 
+public class BDNourritureDAO implements NourritureDAO{
+
+	ConnexionBD connexionBD = ConnexionBD.getInstance();
+	
 	@Override
 	public void create(Nourriture t) {
 		try {

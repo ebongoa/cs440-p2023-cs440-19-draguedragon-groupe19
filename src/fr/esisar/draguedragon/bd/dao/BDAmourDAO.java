@@ -7,13 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.esisar.draguedragon.bd.abstractfactory.AmourDAO;
+import fr.esisar.draguedragon.bd.connexion.ConnexionBD;
 import fr.esisar.draguedragon.entities.Amour;
 import fr.esisar.draguedragon.entities.AmourId;
 import fr.esisar.draguedragon.entities.Dragon;
 
 
-public class BDAmourDAO extends DAO<Amour, AmourId> {
+// public class BDAmourDAO extends DAO<Amour, AmourId> {
 
+public class BDAmourDAO implements AmourDAO {
+	
+	ConnexionBD connexionBD = ConnexionBD.getInstance();
+	
 	@Override
 	public void create(Amour t) {
 		// TODO Auto-generated method stub

@@ -1,10 +1,12 @@
 package fr.esisar.draguedragon.bd.dao;
 
-import fr.esisar.draguedragon.bd.factory.BDAmourFactory;
-import fr.esisar.draguedragon.bd.factory.BDDragonFactory;
+import java.io.File;
+
+//import fr.esisar.draguedragon.bd.factory.BDAmourFactory;
+//import fr.esisar.draguedragon.bd.factory.BDDragonFactory;
 import fr.esisar.draguedragon.bd.factory.BDFactory;
-import fr.esisar.draguedragon.bd.factory.BDNourritureFactory;
-import fr.esisar.draguedragon.bd.factory.BDRepasFactory;
+//import fr.esisar.draguedragon.bd.factory.BDNourritureFactory;
+//import fr.esisar.draguedragon.bd.factory.BDRepasFactory;
 import fr.esisar.draguedragon.entities.Amour;
 import fr.esisar.draguedragon.entities.AmourId;
 import fr.esisar.draguedragon.entities.Dragon;
@@ -16,27 +18,28 @@ public class DragueDragonMain {
 
 	public static void main(String[] args) {
 		
-		BDAmourFactory amourFactory = new BDAmourFactory();
-		BDDragonFactory dragonFactory = new BDDragonFactory();
-		BDNourritureFactory nourritureFactory = new BDNourritureFactory();
-		BDRepasFactory repasFactory = new BDRepasFactory();
 		
-		DAO<Dragon, String> dragonDAO= dragonFactory.newInstance();
-		DAO<Amour, AmourId> amourDAO= amourFactory.newInstance();
-		DAO<Nourriture, String> nourritureDAO= nourritureFactory.newInstance();
-		DAO<Repas, RepasId> repasDAO= repasFactory.newInstance();
+//		BDAmourFactory amourFactory = new BDAmourFactory();
+//		BDDragonFactory dragonFactory = new BDDragonFactory();
+//		BDNourritureFactory nourritureFactory = new BDNourritureFactory();
+//		BDRepasFactory repasFactory = new BDRepasFactory();
 		
-		Dragon aimant = new Dragon();
-		aimant.setNomDragon("Smeaghol");
-		aimant.setSexe("M");
-		aimant.setCracheFeu(true);
-		aimant.setLongeur((float)152);;
-		aimant.setEcailles(1857);
-		aimant.setEnAmour("Macho");
-
-		Dragon aime = new Dragon();
-		aime.setNomDragon("Tarak");
-		Nourriture nourriture = new Nourriture("Pomme",7);		
+//		DAO<Dragon, String> dragonDAO= dragonFactory.newInstance();
+//		DAO<Amour, AmourId> amourDAO= amourFactory.newInstance();
+//		DAO<Nourriture, String> nourritureDAO= nourritureFactory.newInstance();
+//		DAO<Repas, RepasId> repasDAO= repasFactory.newInstance();
+//		
+//		Dragon aimant = new Dragon();
+//		aimant.setNomDragon("Smeaghol");
+//		aimant.setSexe("M");
+//		aimant.setCracheFeu(true);
+//		aimant.setLongeur((float)152);;
+//		aimant.setEcailles(1857);
+//		aimant.setEnAmour("Macho");
+//
+//		Dragon aime = new Dragon();
+//		aime.setNomDragon("Tarak");
+//		Nourriture nourriture = new Nourriture("Pomme",7);		
 		
 //		System.out.println(dragonDAO.findById("Smeaghol"));
 //		System.out.println(amourDAO.findById(new AmourId(aimant,aime)));

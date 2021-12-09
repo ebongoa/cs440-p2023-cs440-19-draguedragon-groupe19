@@ -7,11 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.esisar.draguedragon.bd.abstractfactory.AmourDAO;
+import fr.esisar.draguedragon.bd.abstractfactory.DragonDAO;
+import fr.esisar.draguedragon.bd.connexion.ConnexionBD;
 import fr.esisar.draguedragon.entities.Dragon;
 import fr.esisar.draguedragon.entities.Nourriture;
 
-public class BDDragonDAO extends DAO<Dragon, String> {
 
+//public class BDDragonDAO extends DAO<Dragon, String> {
+
+public class BDDragonDAO implements DragonDAO {
+
+	ConnexionBD connexionBD = ConnexionBD.getInstance();
+	
 	public void create(Dragon dragon) {
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;

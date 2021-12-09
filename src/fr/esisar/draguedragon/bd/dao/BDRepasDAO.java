@@ -7,13 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.esisar.draguedragon.bd.abstractfactory.AmourDAO;
+import fr.esisar.draguedragon.bd.abstractfactory.RepasDAO;
+import fr.esisar.draguedragon.bd.connexion.ConnexionBD;
 import fr.esisar.draguedragon.entities.Amour;
 import fr.esisar.draguedragon.entities.Dragon;
 import fr.esisar.draguedragon.entities.Nourriture;
 import fr.esisar.draguedragon.entities.Repas;
 import fr.esisar.draguedragon.entities.RepasId;
 
-public class BDRepasDAO extends DAO<Repas, RepasId>{
+//public class BDRepasDAO extends DAO<Repas,RepasId> {
+
+public class BDRepasDAO implements RepasDAO{
+	
+	ConnexionBD connexionBD = ConnexionBD.getInstance();
 	
 	public List<Repas> findAll() {
 		// TODO Auto-generated method stub
