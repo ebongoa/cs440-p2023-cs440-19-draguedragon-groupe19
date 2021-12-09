@@ -1,0 +1,49 @@
+{
+   "dragons":[
+      {
+         "nomDragon":"Birdurh",
+         "sexe":"M",
+         "longeur":258,
+         "ecailles":4787,
+         "cracheFeu":false,
+         "enAmour":"Timide"
+      },
+      {
+         "nomDragon":"MissToc",
+         "sexe":"F",
+         "longeur":183,
+         "ecailles":2781,
+         "cracheFeu":false,
+         "enAmour":"Volage"
+      }
+   ],
+   "amours":[
+      {
+         "amourId":{
+            "aimant":{
+               "nomDragon":"Smeaghol",
+               "sexe":"M",
+               "longeur":152,
+               "ecailles":1857,
+               "cracheFeu":true,
+               "enAmour":"Macho"
+            },
+            "aime":{
+               "nomDragon":"Tarak",
+               "sexe":"F",
+               "longeur":123,
+               "ecailles":851,
+               "cracheFeu":true,
+               "enAmour":"Timide"
+            }
+         },
+         "force":"PASSIONNE"
+      }
+   ],
+   "nourritures":[
+      
+   ],
+   "repas":[
+      
+   ]
+}

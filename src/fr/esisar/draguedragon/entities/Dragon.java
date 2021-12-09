@@ -14,7 +14,7 @@ public class Dragon implements Serializable{
 	
 	private String sexe;
 	
-	private Float longeur;
+	private Float longueur;
 	
 	private Integer ecailles;
 	
@@ -26,11 +26,11 @@ public class Dragon implements Serializable{
 		super();
 	}
 	
-	public Dragon(String nomDragon, String sexe, Float longeur, Integer ecailles, Boolean cracheFeu, String enAmour) {
+	public Dragon(String nomDragon, String sexe, Float longueur, Integer ecailles, Boolean cracheFeu, String enAmour) {
 		super();
 		this.nomDragon = nomDragon;
 		this.sexe = sexe;
-		this.longeur = longeur;
+		this.longueur = longueur;
 		this.ecailles = ecailles;
 		this.cracheFeu = cracheFeu;
 		this.enAmour = enAmour;
@@ -53,11 +53,11 @@ public class Dragon implements Serializable{
 	}
 	
 	public Float getLongeur() {
-		return longeur;
+		return longueur;
 	}
 	
 	public void setLongeur(Float longeur) {
-		this.longeur = longeur;
+		this.longueur = longeur;
 	}
 	
 	public Integer getEcailles() {
@@ -86,7 +86,7 @@ public class Dragon implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cracheFeu, ecailles, enAmour, longeur, nomDragon, sexe);
+		return Objects.hash(cracheFeu, ecailles, enAmour, longueur, nomDragon, sexe);
 	}
 
 	@Override
@@ -99,13 +99,13 @@ public class Dragon implements Serializable{
 			return false;
 		Dragon other = (Dragon) obj;
 		return Objects.equals(cracheFeu, other.cracheFeu) && Objects.equals(ecailles, other.ecailles)
-				&& Objects.equals(enAmour, other.enAmour) && Objects.equals(longeur, other.longeur)
+				&& Objects.equals(enAmour, other.enAmour) && Objects.equals(longueur, other.longueur)
 				&& Objects.equals(nomDragon, other.nomDragon) && Objects.equals(sexe, other.sexe);
 	}
 	
 	@Override
 	public String toString() {
-		return "Dragon [nomDragon=" + nomDragon + ", sexe=" + sexe + ", longeur=" + longeur + ", ecailles=" + ecailles
+		return "Dragon [nomDragon=" + nomDragon + ", sexe=" + sexe + ", longeur=" + longueur + ", ecailles=" + ecailles
 				+ ", cracheFeu=" + cracheFeu + ", enAmour=" + enAmour + "]";
 	}
 

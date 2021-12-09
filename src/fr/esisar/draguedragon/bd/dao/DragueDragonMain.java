@@ -2,6 +2,7 @@ package fr.esisar.draguedragon.bd.dao;
 
 import java.io.File;
 
+import fr.esisar.draguedragon.bd.connexion.JsonFile;
 //import fr.esisar.draguedragon.bd.factory.BDAmourFactory;
 //import fr.esisar.draguedragon.bd.factory.BDDragonFactory;
 import fr.esisar.draguedragon.bd.factory.BDFactory;
@@ -10,6 +11,7 @@ import fr.esisar.draguedragon.bd.factory.BDFactory;
 import fr.esisar.draguedragon.entities.Amour;
 import fr.esisar.draguedragon.entities.AmourId;
 import fr.esisar.draguedragon.entities.Dragon;
+import fr.esisar.draguedragon.entities.DragueDragon;
 import fr.esisar.draguedragon.entities.Nourriture;
 import fr.esisar.draguedragon.entities.Repas;
 import fr.esisar.draguedragon.entities.RepasId;
@@ -17,7 +19,10 @@ import fr.esisar.draguedragon.entities.RepasId;
 public class DragueDragonMain {
 
 	public static void main(String[] args) {
-		
+		JsonFile jsonFile = JsonFile.getInstance();
+		DragueDragon dragueDragon = jsonFile.loadFile();
+		System.out.println(dragueDragon.dragons.get(0));
+		System.out.println(dragueDragon.amours.get(0));
 		
 //		BDAmourFactory amourFactory = new BDAmourFactory();
 //		BDDragonFactory dragonFactory = new BDDragonFactory();

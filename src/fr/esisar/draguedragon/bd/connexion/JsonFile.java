@@ -1,10 +1,8 @@
 package fr.esisar.draguedragon.bd.connexion;
 
 import java.io.File;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import java.io.IOException;
+import java.io.InputStream;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.esisar.draguedragon.entities.DragueDragon;
@@ -37,26 +35,24 @@ public class JsonFile {
 	}
 	
 	public DragueDragon loadFile() {
-		ObjectMapper sMapper = new ObjectMapper();
-		
-	    String dragueDragonJson = "";    
-	    try {  
-	        dragueDragonJson = "";
-	        this.dragueDragon = sMapper.readValue(dragueDragonJson,DragueDragon.class);  
-	    } catch (JsonParseException e) {  
-	        e.printStackTrace();  
-	    } catch (JsonMappingException e) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			this.dragueDragon = mapper.readValue(file, DragueDragon.class);
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+		}
 	    
 	    return this.dragueDragon;
 	}
 	
 	public void saveFile(DragueDragon dragueDragon) {
-		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mapper.writeValue(this.file, dragueDragon);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
