@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cette classe comporte 4 attributs qui pemettent de stocker les donnees, une List de Dragon, une de Nourriture, une de Repas et une de Amour.
+ * La classe permet uniquement de les recuperer.
+ * @author laurenal
+ */
+
 public class DragueDragon implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 641805476897111473L;
 	
 	public List<Amour> amours;

@@ -9,6 +9,14 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import fr.esisar.draguedragon.entities.DragueDragon;
 
+/**
+ * Permet de creer un un fichier Json
+ * 
+ * @author laurenal
+ *
+ */
+
+
 public class JsonFile {
 	
 	private static JsonFile jsonFile = null;
@@ -23,6 +31,11 @@ public class JsonFile {
 		this.dragueDragon = new DragueDragon();
 	}
 	
+	
+	/**
+	 * 
+	 * @return Un JsonFile associe au fichier Json donnee dans la classe Constants (a avant si elle n'existe pas deja)
+	 */
 	public final static JsonFile getInstance() {
 		synchronized(JsonFile.class) {
 			if(JsonFile.jsonFile==null) {
@@ -33,10 +46,18 @@ public class JsonFile {
 		return JsonFile.jsonFile;
 	}
 	
+	/**
+	 * 
+	 * @return Le pathname du fichier Json
+	 */
 	public File getFile() {
 		return file;
 	}
 	
+	/**
+	 * 
+	 * @return Renvoie un element dragueDragon qui contient tous les elements present dans le fichier Json dont le pathname est présiser dans la classe Constants
+	 */
 	public DragueDragon loadFile() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -50,6 +71,10 @@ public class JsonFile {
 	    return this.dragueDragon;
 	}
 	
+	/**
+	 * 
+	 * @param dragueDragon contient la nouvelle base de donnee(sous forme de listes) a ecrire dans un fichier Json
+	 */
 	public void saveFile(DragueDragon dragueDragon) {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());

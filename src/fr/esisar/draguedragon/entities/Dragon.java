@@ -3,11 +3,15 @@ package fr.esisar.draguedragon.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Cette classe comporte 6 attributs, un qui permet d'indentifier un Dragon(nomDragon) et le sexe(sexe), la longueur(longueur), le nombre d'ecailles(ecailles), 
+ * si le dragon crache du feu(cracheFeu) et si le dragon est amoureux(enAmour).
+ * La classe permet de les recuperer et de leur donner une valeur. 
+ * @author laurenal
+ */
+
 public class Dragon implements Serializable{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -3052471461815549088L;
 	
 	private String nomDragon;

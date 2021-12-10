@@ -5,6 +5,13 @@ import fr.esisar.draguedragon.bd.dao.BDDragonDAO;
 import fr.esisar.draguedragon.bd.dao.BDNourritureDAO;
 import fr.esisar.draguedragon.bd.dao.BDRepasDAO;
 
+/**
+ * Implemente les methodes de creation des differents BD...DAO
+ * 
+ * @author laurenal
+ *
+ */
+
 public class BDFactory implements AbstractFactory{
 
 	@Override

@@ -12,12 +12,23 @@ import fr.esisar.draguedragon.bd.abstractfactory.NourritureDAO;
 import fr.esisar.draguedragon.bd.connexion.ConnexionBD;
 import fr.esisar.draguedragon.entities.Nourriture;
 
+//code pour l'utilisation sans AbstractFactory
 //public class BDNourritureDAO extends DAO<Nourriture, String> {
+
+/**
+ * Permet de faire les operations de creation, selection, suppression sur la table Nourriture de la base de donnee
+ * @author laurenal
+ *
+ */
 
 public class BDNourritureDAO implements NourritureDAO{
 
 	ConnexionBD connexionBD = ConnexionBD.getInstance();
 	
+	
+	/**
+	 * Permet d'ecrire dans la base de donnee un nouvel element dans la table Nourriture
+	 */
 	@Override
 	public void create(Nourriture t) {
 		try {
@@ -32,6 +43,9 @@ public class BDNourritureDAO implements NourritureDAO{
 		}
 	}
 
+	/**
+	 * Permet de rechercher un element dans la table Nourriture de la base de donnee et le renvoie
+	 */
 	@Override
 	public Nourriture findById(String nomProduit) {
 		try {
@@ -51,9 +65,11 @@ public class BDNourritureDAO implements NourritureDAO{
 		return null;	
 	}
 	
+	/**
+	 * Permet de recuperer tous les elements de la table Nourriture de la base de donnee et les stockent dans une List
+	 */
 	@Override
 	public List<Nourriture> findAll() {
-		// TODO Auto-generated method stub
 		Connection connection = connexionBD.getConnection();
 		List<Nourriture> nourritures = new ArrayList<Nourriture>();
 		PreparedStatement preparedStatement;
@@ -69,17 +85,17 @@ public class BDNourritureDAO implements NourritureDAO{
 			
 			preparedStatement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return nourritures;		
 	}
 	
-	
+	/**
+	 * Permet de supprimer un element de la table Nourriture de la base de donnee
+	 */
 	@Override
 	public void delete(Nourriture nourriture) {
-		// TODO Auto-generated method stub
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
 		try {
@@ -93,7 +109,6 @@ public class BDNourritureDAO implements NourritureDAO{
 			
 			preparedStatement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

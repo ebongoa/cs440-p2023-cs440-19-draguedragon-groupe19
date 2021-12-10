@@ -2,6 +2,11 @@ package fr.esisar.draguedragon.entities;
 
 import java.util.Objects;
 
+/**
+ * @author laurenal
+ * Cette classe permet de faire le lien entre un Dragon et une Nourriture, ce qui constitue l'indentificateur d'un Repas.
+ * Elle represente le lien qui existe entre les tables Nourriture, Dragon et Repas dans la base de donnee. 
+ */
 public class RepasId {
 
 	Dragon dragon;

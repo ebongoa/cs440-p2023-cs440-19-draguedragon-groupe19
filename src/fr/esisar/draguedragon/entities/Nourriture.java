@@ -3,11 +3,14 @@ package fr.esisar.draguedragon.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Cette classe comporte 2 attributs, un qui permet d'indentifier une Nourriture (nomProduit) et les calories de cette Nourriture (calories).
+ * La classe permet de les recuperer et de leur donner une valeur 
+ * @author laurenal
+ */
+
 public class Nourriture implements Serializable{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -327096012265611052L;
 	private String nomProduit;
 	private Integer calories;

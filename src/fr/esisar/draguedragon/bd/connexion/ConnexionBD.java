@@ -3,6 +3,13 @@ package fr.esisar.draguedragon.bd.connexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Cette classe initie la connexion avec la base de donnees.
+ * 
+ * @author laurenal
+ *
+ */
+
 public final class ConnexionBD {
 
 	private static ConnexionBD connexionBD = null;
@@ -19,6 +26,10 @@ public final class ConnexionBD {
 		}
 	}
 
+	/**
+	 * 
+	 * @return Une connexionBD vers la base de donnee (a avant si elle n'existe pas deja)
+	 */
 	public final static ConnexionBD getInstance() {
 		synchronized(ConnexionBD.class) {
 			if(ConnexionBD.connexionBD==null) {
@@ -28,7 +39,10 @@ public final class ConnexionBD {
 		}
 		return ConnexionBD.connexionBD;
 	}
-
+	/**
+	 * 
+	 * @return La connexion a la base de donnee
+	 */
 	public Connection getConnection() {
 		return connection;
 	}

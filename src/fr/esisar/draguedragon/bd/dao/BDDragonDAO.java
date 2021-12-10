@@ -14,12 +14,24 @@ import fr.esisar.draguedragon.entities.Dragon;
 import fr.esisar.draguedragon.entities.Nourriture;
 
 
+//code pour l'utilisation sans AbstractFactory
 //public class BDDragonDAO extends DAO<Dragon, String> {
+
+
+/**
+ * Permet de faire les operations de creation, selection, suppression sur la table Dragon de la base de donnee
+ * @author laurenal
+ *
+ */
 
 public class BDDragonDAO implements DragonDAO {
 
 	ConnexionBD connexionBD = ConnexionBD.getInstance();
-	
+
+	/**
+	 * Permet d'ecrire dans la base de donnee un nouvel element dans la table Dragon
+	 */
+	@Override
 	public void create(Dragon dragon) {
 		Connection connection = connexionBD.getConnection();
 		PreparedStatement preparedStatement;
@@ -40,11 +52,14 @@ public class BDDragonDAO implements DragonDAO {
 
 			preparedStatement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Permet de rechercher un element dans la table Dragon de la base de donnee et le renvoie
+	 */
+	@Override
 	public Dragon findById(String nomDragon) {
 		PreparedStatement preparedStatement;
 		Dragon dragon = new Dragon();
@@ -53,8 +68,8 @@ public class BDDragonDAO implements DragonDAO {
 			preparedStatement.setString(1, nomDragon);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			
-			
+
+
 			dragon.setNomDragon(nomDragon);
 			dragon.setSexe(resultSet.getString("sexe"));
 			dragon.setCracheFeu(testFeu(resultSet.getString("cracheFeu")));
@@ -68,7 +83,11 @@ public class BDDragonDAO implements DragonDAO {
 		}
 		return dragon;	
 	}
-
+	/**
+	 * 
+	 * @param s valeur recuperer dans la table de donnee (correspond a "O" ou "N"
+	 * @return un booleen qui represente si le dragon crache du feu ou non (true si s="O", false sinon)
+	 */
 	public Boolean testFeu(String s) {
 		Boolean cracheFeu = false;
 		if(s.equals("O")) {
@@ -77,6 +96,9 @@ public class BDDragonDAO implements DragonDAO {
 		return cracheFeu;
 	}
 
+	/**
+	 * Permet de recuperer tous les elements de la table Dragon de la base de donnee et les stockent dans une List
+	 */
 	@Override
 	public List<Dragon> findAll() {
 		// TODO Auto-generated method stub
@@ -100,6 +122,10 @@ public class BDDragonDAO implements DragonDAO {
 		return dragons;	
 	}
 
+	/**
+	 * Permet de supprimer un element de la table Dragon de la base de donnee.
+	 * Supprime egalement tous les Repas et Amour etant conserne par le dragon a supprimer
+	 */
 	@Override
 	public void delete(Dragon dragon) {
 		// TODO Auto-generated method stub
@@ -110,11 +136,11 @@ public class BDDragonDAO implements DragonDAO {
 			preparedStatement.setString(1, dragon.getNomDragon());
 			preparedStatement.setString(2, dragon.getNomDragon());
 			preparedStatement.executeUpdate();
-			
+
 			preparedStatement = connection.prepareStatement("DELETE FROM REPAS WHERE DRAGON = ?");
 			preparedStatement.setString(1, dragon.getNomDragon());
 			preparedStatement.executeUpdate();
-			
+
 			preparedStatement = connection.prepareStatement("DELETE FROM DRAGON WHERE nom = ?");
 			preparedStatement.setString(1, dragon.getNomDragon());	
 			preparedStatement.executeUpdate();

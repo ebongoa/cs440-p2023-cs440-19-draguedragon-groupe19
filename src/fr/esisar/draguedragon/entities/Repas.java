@@ -3,20 +3,23 @@ package fr.esisar.draguedragon.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Cette classe comporte 2 attributs, un qui permet d'indentifier un Repas (RepasId) et la quantite de ce repas (quantite).
+ * La classe permet de les recuperer et de leur donner une valeur.
+ */
+
 public class Repas implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 8907491723679207420L;
-	
+
 	private Integer quantite;
 
 	private RepasId Id;
-	
+
 	public Repas() {
 		super();
 	}
-	
+
 	public Repas(Integer quantite, RepasId Id) {
 		super();
 		this.quantite = quantite;

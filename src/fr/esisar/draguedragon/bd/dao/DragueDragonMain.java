@@ -26,6 +26,12 @@ import fr.esisar.draguedragon.entities.Nourriture;
 import fr.esisar.draguedragon.entities.Repas;
 import fr.esisar.draguedragon.entities.RepasId;
 
+
+/**
+ * Permet de faire les tests sur la base de donnee et sur un fichier Json
+ * @author laurenal
+ *
+ */
 public class DragueDragonMain {
 
 	public static void main(String[] args) {
@@ -38,7 +44,7 @@ public class DragueDragonMain {
 		AmourDAO amourDAO = BDfactory.createAmourDAO();
 		NourritureDAO nourritureDAO = BDfactory.createNourritureDAO();
 
-// Recuperation de la BD dans un fichier Json
+// Recuperation de la BD cnmplete dans un fichier Json
 //		DragueDragon draguedragon = new DragueDragon(
 //				amourDAO.findAll(),dragonDAO.findAll(),repasDAO.findAll(),nourritureDAO.findAll()
 //				);

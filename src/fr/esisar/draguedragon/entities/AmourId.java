@@ -2,6 +2,12 @@ package fr.esisar.draguedragon.entities;
 
 import java.util.Objects;
 
+/**
+ * @author laurenal
+ * Cette classe permet de faire le lien entre deux Dragon, ce qui constitue l'indentificateur d'un Amour.
+ * Elle represente les liens qui existe entre les tables Dragon et Amour dans la base de donnee. 
+ */
+
 public class AmourId {
 
 	private Dragon aimant;
@@ -16,7 +22,6 @@ public class AmourId {
 	
 	public AmourId() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Dragon getAimant() {

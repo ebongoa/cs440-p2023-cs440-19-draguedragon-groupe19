@@ -1,0 +1,57 @@
+<project name="draguedragon-groupe19" basedir="." default="init">
+
+	<target name="init">
+		<mkdir dir="classes"/>
+		<mkdir dir="javadoc"/>
+		 <path id="classpath"> 
+			  <fileset dir="lib/" includes="*.jar"/> 
+		 </path> 
+	</target>
+
+	<target name="compilation" depends="init">
+		
+       <javac  debug="on" srcdir="src" destdir="classes"  includeantruntime="true">
+       	<classpath refid="classpath"/>
+       	</javac>
+		
+		<echo> compilation OK </echo>
+	</target>
+	
+	<target name="packaging" depends="compilation">
+		
+		<manifestclasspath property="jar.classpath" jarfile="draguedragon-groupe19.jar">
+			<classpath refid="classpath"/>
+		</manifestclasspath>
+		
+		<jar destfile="draguedragon-groupe19.jar" basedir="classes">
+			<manifest>
+				<attribute name="Class-Path" value="${jar.classpath}"/>
+				<attribute name="Main-class" value="fr.esisar.draguedragon.bd.dao.DragueDragonMain"/>
+			</manifest>
+		</jar>
+		<echo> packaging OK </echo>
+	</target>
+	
+	<target name="execution" depends="packaging">
+		<java jar="draguedragon-groupe19.jar" fork="true">
+		</java>
+		<echo> execution OK </echo>
+	</target>
+	
+	<target name="javadoc">
+		<javadoc sourcepath="src"
+		    			destdir="javadoc" >
+			<fileset dir="src" defaultexcludes="yes">
+		    	<include name="**" />
+		    </fileset>
+		</javadoc>
+		<echo> javadoc OK </echo>
+	</target>
+	
+	<target name="clean" depends="init">
+		<delete dir="classes"/>
+		<delete dir="javadoc"/>
+		<echo> clean OK </echo>
+	</target>
+	
+</project>

@@ -2,12 +2,14 @@ package fr.esisar.draguedragon.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
+	
+	/**
+	 * Cette classe comporte 2 attributs, un qui permet d'indentifier un Amour (AmourId) et la force de cet amour (force).
+	 * La classe permet de les recuperer et de leur donner une valeur .
+	 */
 
 public class Amour implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6871483013936964282L;
 	
 	private String force;
@@ -16,6 +18,7 @@ public class Amour implements Serializable{
 	
 	public Amour() {
 		super();
+		
 	}
 	
 	public Amour(String force, AmourId amourId) {

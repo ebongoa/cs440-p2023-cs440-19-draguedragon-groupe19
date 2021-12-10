@@ -13,13 +13,23 @@ import fr.esisar.draguedragon.entities.Amour;
 import fr.esisar.draguedragon.entities.AmourId;
 import fr.esisar.draguedragon.entities.Dragon;
 
-
+//code pour l'utilisation sans AbstractFactory
 // public class BDAmourDAO extends DAO<Amour, AmourId> {
+
+/** 
+ * Permet de faire les operations de creation, selection, suppression sur la table Amour de la base de donnee
+ * @author laurenal
+ *
+ */
+
 
 public class BDAmourDAO implements AmourDAO {
 	
 	ConnexionBD connexionBD = ConnexionBD.getInstance();
 	
+	/**
+	 * Permet d'ecrire dans la base de donnee un nouvel element dans la table Amour
+	 */
 	@Override
 	public void create(Amour t) {
 		Connection connection = connexionBD.getConnection();
@@ -38,6 +48,9 @@ public class BDAmourDAO implements AmourDAO {
 		
 	}
 
+	/**
+	 * Permet de rechercher un element dans la table Amour de la base de donnee et le renvoie
+	 */
 	@Override
 	public Amour findById(AmourId id) {
 		Connection connection = connexionBD.getConnection();
@@ -60,6 +73,9 @@ public class BDAmourDAO implements AmourDAO {
 		return amour;
 	}
 
+	/**
+	 * Permet de recuperer tous les elements de la table Amour de la base de donnee et les stockent dans une List
+	 */
 	@Override
 	public List<Amour> findAll() {
 				Connection connection = connexionBD.getConnection();
@@ -87,6 +103,10 @@ public class BDAmourDAO implements AmourDAO {
 				return amours;	
 	}
 
+	
+	/**
+	 * Permet de supprimer un element de la table Amour de la base de donnee
+	 */
 	@Override
 	public void delete(Amour amour) {
 		Connection connection = connexionBD.getConnection();
